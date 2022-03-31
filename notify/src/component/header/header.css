@@ -1,0 +1,13 @@
+.navbar {
+  min-height: 3rem;
+  width: 100%;
+  background-color: var(--white-color);
+  margin: 0;
+  padding: 1rem;
+}
+.brand-name {
+  letter-spacing: 5px;
+  margin-left: 5rem;
+  padding: 1rem;
+  color: var(--warn-color);
+}

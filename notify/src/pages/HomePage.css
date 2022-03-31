@@ -1,0 +1,6 @@
+.main-content {
+  padding: 2rem;
+  background-color: #e5e5e5;
+  display: flex;
+  gap: 2rem;
+}

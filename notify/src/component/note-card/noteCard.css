@@ -1,0 +1,47 @@
+.note-card {
+  width: 60%;
+  min-height: 7rem;
+  max-height: max-content;
+  border: 1px black solid;
+  background-color: var(--white-color);
+}
+.note-card-title {
+  display: flex;
+  padding: 0.5rem;
+}
+.note-pin {
+  margin-left: auto;
+  font-size: 1.5rem;
+}
+.note-card-body {
+  padding: 0.5rem;
+}
+.note-card-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.note-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+.note-icon {
+  cursor: pointer;
+}
+.text {
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.75rem;
+  padding-bottom: 12px;
+  padding-top: 16px;
+}
+.text:focus {
+  box-sizing: border-box;
+  font-variant-ligatures: none;
+  outline: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
