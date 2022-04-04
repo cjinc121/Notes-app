@@ -1,0 +1,8 @@
+.main-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  width: 70%;
+  margin: 0.5rem;
+}

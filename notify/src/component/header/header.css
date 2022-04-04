@@ -1,0 +1,39 @@
+.navbar {
+  min-height: 2.5rem;
+  width: 100%;
+  background-color: var(--white-color);
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+.brand-name {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  letter-spacing: 5px;
+  margin-left: 2rem;
+  padding: 1rem;
+  color: var(--warn-color);
+}
+.hamburger-button {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 40%;
+  border: 1px black solid;
+  background-color: var(--white-color);
+  margin: auto;
+}
+.search-bar input {
+  border: 0;
+  padding: 0.5rem;
+  width: 80%;
+  border-radius: 0.5rem;
+}
+.search-bar .icon {
+  font-size: 1.5rem;
+}
