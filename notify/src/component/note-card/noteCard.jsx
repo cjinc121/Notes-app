@@ -6,15 +6,17 @@ import {MdLabelOutline,MdOutlineArchive,MdDelete} from "react-icons/md";
 const NoteCard=()=>{
 return <div className="note-card">
  <div className="note-card-title">
-  <div className="note-title"><h3>Title of the note</h3></div>
-  <div className="note-pin "><BsFillPinFill/></div>
+   <div className=""><input type="text" placeholder="Title..." className="note-title"/></div>
+  <div className="note-pin note-icon "><BsFillPinFill/></div>
   </div>
 <div className="note-card-body">
-<div contenteditable="true" aria-multiline="true" role="textbox" className="text"aria-placeholder="note" aria-label="take a note.." dir="ltr" tabindex="0" spellcheck="true"></div>
+  <textarea placeholder="Add a note.."></textarea>
 </div>
 <div className="note-card-footer">
-  <div className="note-date">Created on 26/1/2020</div>
- <div className="note-buttons"><IoColorPaletteOutline/><MdLabelOutline/><MdOutlineArchive/><MdDelete/></div> 
+  <div className="note-save-button"><button className="button secondary-button">Save</button></div>
+ <div className="note-buttons"><IoColorPaletteOutline className="note-icon "/><MdLabelOutline className="note-icon "/>
+ {/* <MdOutlineArchive/><MdDelete/> */}
+ </div> 
 </div>
 </div>
 }

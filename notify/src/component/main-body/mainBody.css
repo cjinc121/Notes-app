@@ -3,24 +3,6 @@
   flex-direction: column;
   gap: 2rem;
   align-items: center;
-  justify-content: center;
   width: 70%;
-  margin: 2rem;
-}
-.search-bar {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  width: 40%;
-  border: 1px black solid;
-  background-color: var(--white-color);
-}
-.search-bar input {
-  border: 0;
-  padding: 0.5rem;
-  width: 80%;
-  border-radius: 0.5rem;
-}
-.search-bar .icon {
-  font-size: 1.5rem;
+  margin: 0.5rem;
 }

@@ -13,6 +13,8 @@ return <div className="sidebar">
    <div className="sidebar-heading"><CgProfile className="sidebar-icon"/>Profile</div>
 <button className="button contained-button">Create New Note</button>
 
+
+
 </div>
 }
 export {LeftSidebar}

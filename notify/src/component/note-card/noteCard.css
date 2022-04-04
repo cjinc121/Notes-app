@@ -9,6 +9,17 @@
   display: flex;
   padding: 0.5rem;
 }
+.note-title {
+  width: 90%;
+  border: 0;
+  padding: 10px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+.note-title:focus {
+  outline: none;
+}
 .note-pin {
   margin-left: auto;
   font-size: 1.5rem;
@@ -16,10 +27,36 @@
 .note-card-body {
   padding: 0.5rem;
 }
+.note-card-body > textarea {
+  width: 90%;
+  height: max-content;
+  border: 0;
+  padding: 10px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.2rem;
+  resize: none;
+  -ms-overflow-style: none;
+}
+.note-card-body > textarea::-webkit-scrollbar {
+  display: none;
+}
+.note-card-body > textarea:focus {
+  box-sizing: border-box;
+  font-variant-ligatures: none;
+  outline: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 .note-card-footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem;
+}
+.note-save-button {
+  margin: 0;
 }
 .note-buttons {
   display: flex;
@@ -29,19 +66,4 @@
 }
 .note-icon {
   cursor: pointer;
-}
-.text {
-  font-size: 1.375rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.75rem;
-  padding-bottom: 12px;
-  padding-top: 16px;
-}
-.text:focus {
-  box-sizing: border-box;
-  font-variant-ligatures: none;
-  outline: none;
-  white-space: pre-wrap;
-  word-wrap: break-word;
 }
