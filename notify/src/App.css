@@ -1,1 +1,4 @@
 @import url("https://fluid-ui-component.vercel.app/docs/docs.css");
+.App {
+  height: 100vh;
+}

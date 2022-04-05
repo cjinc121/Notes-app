@@ -11,7 +11,6 @@ return <div className="sidebar">
    <div className="sidebar-heading"><BiArchiveIn className="sidebar-icon"/>Archive</div>
    <div className="sidebar-heading"><BsTrashFill className="sidebar-icon"/>Trash</div>
    <div className="sidebar-heading"><CgProfile className="sidebar-icon"/>Profile</div>
-<button className="button contained-button">Create New Note</button>
 
 
 
