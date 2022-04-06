@@ -1,35 +1,138 @@
 import "./noteDisplay.css";
 import { useNotesContext } from "../../context/notes-context";
-import {MdDelete,MdOutlineArchive } from "react-icons/md";
-import {BsFillPinFill} from "react-icons/bs";
-import {IoColorPaletteOutline} from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { MdDelete, MdOutlineArchive } from "react-icons/md";
+import { BsFillPinFill, BsPin } from "react-icons/bs";
+import { IoColorPaletteOutline } from "react-icons/io5";
+import { GrEdit } from "react-icons/gr";
+import { NoteCard } from "../note-card/noteCard";
+const NoteDisplayCard = () => {
+  const { notesState, notesDispatch } = useNotesContext();
+  return (
+    <>
+      {notesState.editModal && (
+        <div
+          className="modal-page"
+          onClick={() =>
+            notesDispatch({
+              type: "HIDE_EDIT_MODAL",
+            })
+          }
+        >
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            {<NoteCard editable={true} />}
+          </div>
+        </div>
+      )}
 
-const NoteDisplayCard=()=>{
-  const {notes,setNotes}=useNotesContext();
+      <h3> Pinned:</h3>
+      <div className="note-display-container">
+        {notesState.notes
+          .filter(
+            (item) =>
+              item.isTrash === false &&
+              item.isPin === true &&
+              item.isArchive === false
+          )
+          .map((item) => {
+            return (
+              <div className="note-display-card">
+                <div className="note-display-title">
+                  <p>{item.note.title}</p>
+                  <BsFillPinFill
+                    onClick={() =>
+                      notesDispatch({ type: "UNPIN", payload: item.note.id })
+                    }
+                  />
+                </div>
+                <div className="note-display-body">
+                  <p> {item.note.body}</p>
+                </div>
+                <div className="note-display-footer">
+                  <GrEdit
+                    onClick={() => {
+                      notesDispatch({
+                        type: "SHOW_EDIT_MODAL",
+                      });
+                      notesDispatch({
+                        type: "TO_EDIT",
+                        payload: item.note,
+                      });
+                    }}
+                  />
+                  <IoColorPaletteOutline />
+                  <MdOutlineArchive
+                    onClick={() =>
+                      notesDispatch({ type: "ARCHIVE", payload: item.note.id })
+                    }
+                  />
+                  <MdDelete
+                    onClick={() =>
+                      notesDispatch({ type: "TRASH", payload: item.note.id })
+                    }
+                  />
+                </div>
+              </div>
+            );
+          })}
+      </div>
 
-  return <>
-
-    <div className="note-display-container">
-    <h3> Notes:</h3>
-{
-notes.map((note)=>{
-  return <div className="note-display-card" >
-  <div className="note-display-title"> 
-<p>{note.title}</p><BsFillPinFill /></div>
-<div className="note-display-body"><p> {note.body}</p></div>
-<div className="note-display-footer"> 
-<IoColorPaletteOutline/>  
-<MdOutlineArchive /> 
-<MdDelete onClick={()=>{setNotes((notes)=>notes.filter((filterNote)=>filterNote.id!=note.id))}}/> 
-</div>
-</div>
- 
-
-})}
-
-  </div> 
-
- </>
-}
-export {NoteDisplayCard};
+      <h3> Notes:</h3>
+      <div className="note-display-container">
+        {notesState.notes
+          .filter(
+            (item) =>
+              item.isTrash === false &&
+              item.isPin === false &&
+              item.isArchive === false
+          )
+          .map((item) => {
+            return (
+              <>
+                <div className="note-display-card">
+                  <div className="note-display-title">
+                    <p>{item.note.title}</p>
+                    <BsPin
+                      onClick={() =>
+                        notesDispatch({ type: "PIN", payload: item.note.id })
+                      }
+                    />
+                  </div>
+                  <div className="note-display-body">
+                    <p> {item.note.body}</p>
+                  </div>
+                  <div className="note-display-footer">
+                    <GrEdit
+                      onClick={() => {
+                        notesDispatch({
+                          type: "SHOW_EDIT_MODAL",
+                        });
+                        notesDispatch({
+                          type: "TO_EDIT",
+                          payload: item.note,
+                        });
+                      }}
+                    />
+                    <IoColorPaletteOutline />
+                    <MdOutlineArchive
+                      onClick={() =>
+                        notesDispatch({
+                          type: "ARCHIVE",
+                          payload: item.note.id,
+                        })
+                      }
+                    />
+                    <MdDelete
+                      onClick={() =>
+                        notesDispatch({ type: "TRASH", payload: item.note.id })
+                      }
+                    />
+                  </div>
+                </div>
+              </>
+            );
+          })}
+      </div>
+    </>
+  );
+};
+export { NoteDisplayCard };

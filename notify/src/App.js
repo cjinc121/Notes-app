@@ -1,11 +1,17 @@
 import "./App.css";
-import { Header } from "./component/header/header.jsx";
-import { HomePage } from "./pages/HomePage";
+import { HomePage } from "./pages/Homepage/HomePage.jsx";
+import { Routes, Route } from "react-router-dom";
+import { Archivepage } from "./pages/ArchivePage/ArchivePage";
+import { TrashPage } from "./pages/TrashPage/TrashPage";
+
 function App() {
   return (
     <div className="App">
-      <Header />
-      <HomePage />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/archive" element={<Archivepage />} />
+        <Route path="/trash" element={<TrashPage />} />
+      </Routes>
     </div>
   );
 }

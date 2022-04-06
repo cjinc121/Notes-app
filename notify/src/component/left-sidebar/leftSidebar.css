@@ -30,3 +30,11 @@
   cursor: pointer;
   width: max-content;
 }
+@media only screen and (max-width: 500px){
+.sidebar{
+  height: 100%;
+position: absolute;
+top: 4rem;
+left: 0;
+}
+}
