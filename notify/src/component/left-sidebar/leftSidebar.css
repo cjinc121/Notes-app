@@ -2,9 +2,7 @@
   background-color: var(--white-color);
   width: max-content;
   position: relative;
-  height: max-content;
   padding: 1rem;
-  margin: 0 3rem;
 }
 .sidebar-heading {
   font-weight: bold;

@@ -4,13 +4,13 @@
   max-height: max-content;
   border: 1px black solid;
   background-color: var(--white-color);
+  border-radius: 5px;
 }
 .note-card-title {
-  display: flex;
   padding: 0.5rem;
 }
 .note-title {
-  width: 90%;
+  width: 100%;
   border: 0;
   padding: 10px;
   font-size: 1.3rem;
@@ -31,13 +31,11 @@
   width: 90%;
   height: max-content;
   border: 0;
-  padding: 10px;
   font-size: 1.3rem;
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.2rem;
   resize: none;
-  -ms-overflow-style: none;
 }
 .note-card-body > textarea::-webkit-scrollbar {
   display: none;

@@ -1,0 +1,24 @@
+.note-display-container {
+  display: flex;
+  gap: 1rem;
+}
+.note-display-card {
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 5rem;
+  min-width: 12rem;
+  padding: 7px;
+  background-color: var(--white-color);
+}
+.note-display-title {
+  display: flex;
+  justify-content: space-between;
+}
+.note-display-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 3px;
+}
