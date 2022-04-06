@@ -1,10 +1,14 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
+import { notesReducer } from "../utils/notesReducer";
+const NotesContext = createContext(null);
+const useNotesContext = () => useContext(NotesContext);
+const NotesContextProvider = ({ children }) => {
+  const [notesState, notesDispatch] = useReducer(notesReducer, { notes: [] });
 
-const NotesContext=createContext(null);
-const useNotesContext=()=>useContext(NotesContext);
-const NotesContextProvider=({children})=>{
-  const [notes,setNotes]=useState([]);
-
-return <NotesContext.Provider value={{notes,setNotes}}>{children}</NotesContext.Provider>
-}
-export {useNotesContext,NotesContextProvider};
+  return (
+    <NotesContext.Provider value={{ notesState, notesDispatch }}>
+      {children}
+    </NotesContext.Provider>
+  );
+};
+export { useNotesContext, NotesContextProvider };

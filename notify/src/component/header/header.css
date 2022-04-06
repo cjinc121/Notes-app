@@ -18,6 +18,7 @@
 .hamburger-button {
   font-size: 1.2rem;
   cursor: pointer;
+  display: none;
 }
 .search-bar {
   display: flex;
@@ -36,4 +37,9 @@
 }
 .search-bar .icon {
   font-size: 1.5rem;
+}
+@media only screen and (max-width: 500px){
+  .hamburger-button{
+    display: inline;
+  }
 }

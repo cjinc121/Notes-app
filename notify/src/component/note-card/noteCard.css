@@ -65,3 +65,8 @@
 .note-icon {
   cursor: pointer;
 }
+@media only screen and (max-width: 500px){
+  .note-card {
+    width: 100%;
+  }
+}
