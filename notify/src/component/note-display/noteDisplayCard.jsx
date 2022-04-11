@@ -35,7 +35,7 @@ const NoteDisplayCard = () => {
           )
           .map((item) => {
             return (
-              <div className="note-display-card">
+              <div className={`note-display-card ${item.note.color}`}>
                 <div className="note-display-title">
                   <p>{item.note.title}</p>
                   <BsFillPinFill
@@ -59,7 +59,6 @@ const NoteDisplayCard = () => {
                       });
                     }}
                   />
-                  <IoColorPaletteOutline />
                   <MdOutlineArchive
                     onClick={() =>
                       notesDispatch({ type: "ARCHIVE", payload: item.note.id })
@@ -88,7 +87,7 @@ const NoteDisplayCard = () => {
           .map((item) => {
             return (
               <>
-                <div className="note-display-card">
+                <div className={`note-display-card ${item.note.color}`}>
                   <div className="note-display-title">
                     <p>{item.note.title}</p>
                     <BsPin
@@ -112,7 +111,6 @@ const NoteDisplayCard = () => {
                         });
                       }}
                     />
-                    <IoColorPaletteOutline />
                     <MdOutlineArchive
                       onClick={() =>
                         notesDispatch({

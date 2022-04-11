@@ -1,5 +1,3 @@
-import { IoAccessibilityOutline, IoTerminal } from "react-icons/io5";
-
 const notesReducer = (state, action) => {
   switch (action.type) {
     case "ADD_NEW_NOTE":
@@ -8,9 +6,8 @@ const notesReducer = (state, action) => {
         notes: [
           ...state.notes,
           {
-            note: action.payload,
+            note: action.payload.note,
             isPin: false,
-            color: "default",
             isTrash: false,
             isArchive: false,
           },
@@ -65,7 +62,38 @@ const notesReducer = (state, action) => {
       return { ...state, editModal: false };
     case "TO_EDIT":
       return { ...state, toEdit: action.payload };
+    case "COLOR":
+      const colorNotes = state.notes.map((item) => {
+        if (item.note.id === action.payload.id)
+          item.note.color = action.payload.color;
+        return item;
+      });
+      return { ...state, notes: colorNotes };
+    case "ADD_LABEL":
+      const labelNotes = state.notes.map((item) => {
+        if (item.note.id === action.payload.id) {
+          if (
+            item.label.find((item) => item === action.payload.name) ===
+            undefined
+          )
+            item.label = [...item.label, action.payload.name];
+        }
+        return item;
+      });
+      console.log(state.notes);
+      return { ...state, notes: labelNotes };
+    case "REMOVE_LABEL":
+      const removeLabelNotes = state.notes.map((item) => {
+        if (item.note.id === action.payload.id) {
+          item.label = item.label.filter(
+            (labels) => labels != action.payload.name
+          );
+        }
+        return item;
+      });
+      console.log(state.notes);
 
+      return { ...state, notes: removeLabelNotes };
     default:
       return state;
   }

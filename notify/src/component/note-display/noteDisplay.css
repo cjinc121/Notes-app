@@ -26,6 +26,21 @@
   gap: 3px;
   cursor: pointer;
 }
+.white{
+  background-color: var(--white-color);
+}
+.blue{
+  background-color: var(--info-color);
+}
+.green{
+  background-color: var(--sucess-color);
+}
+.yellow{
+  background-color: var(--warn-color);
+}
+.red{
+  background-color: var(--error-color);
+}
 .modal-page {
   position: fixed;
   top: 0;

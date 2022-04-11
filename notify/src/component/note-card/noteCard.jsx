@@ -6,6 +6,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useNotesContext } from "../../context/notes-context";
 import { v4 as uuid } from "uuid";
 const NoteCard = ({ editable }) => {
+  const [showColors, setShowColors] = useState(false);
   const current = new Date();
   const currentDate = `${current.getDate()}/${
     current.getMonth() + 1
@@ -15,7 +16,7 @@ const NoteCard = ({ editable }) => {
     title: "",
     body: "",
     date: currentDate,
-    label: "",
+    color: "white",
   });
   const { notesState, notesDispatch } = useNotesContext();
   useEffect(() => {
@@ -25,17 +26,17 @@ const NoteCard = ({ editable }) => {
         title: notesState.toEdit.title,
         body: notesState.toEdit.body,
         date: notesState.toEdit.date,
-        label: notesState.toEdit.label,
+        color: notesState.toEdit.color,
       });
     }
   }, []);
   return (
-    <div className="note-card">
+    <div className={`note-card ${noteContent.color}`}>
       <div className="note-card-title">
         <input
           type="text"
           placeholder="Title..."
-          className="note-title"
+          className={`note-title ${noteContent.color}`}
           onChange={(e) =>
             setNoteContent((noteContent) => ({
               ...noteContent,
@@ -47,36 +48,82 @@ const NoteCard = ({ editable }) => {
       </div>
       <div className="note-card-body">
         <textarea
+          className={`${noteContent.color}`}
           onChange={(e) =>
             setNoteContent((noteContent) => ({
               ...noteContent,
               body: e.target.value,
             }))
           }
-          contentEditable="true"
           placeholder="Add a note.."
           value={noteContent.body}
         ></textarea>
       </div>
       <div className="note-card-footer">
-        <div className="note-card-label">
-          <p>{noteContent.date}</p>
-          <input
-            type="text"
-            placeholder="Add a Label..."
-            className="note-label"
-            onChange={(e) =>
-              setNoteContent((noteContent) => ({
-                ...noteContent,
-                label: e.target.value,
-              }))
-            }
-            value={noteContent.label}
-          />
-        </div>
+        {
+          <div className="note-card-label">
+            <p>{noteContent.date}</p>
+          </div>
+        }
         <div className="note-buttons">
-          <IoColorPaletteOutline className="note-icon " />
+          <IoColorPaletteOutline
+            className="note-icon "
+            onClick={() => {
+              setShowColors(!showColors);
+            }}
+          />
+          {/* colorPallete */}
+          {showColors && (
+            <div className="color-pallete">
+              <div
+                className="color white"
+                onClick={() =>
+                  setNoteContent((noteContent) => ({
+                    ...noteContent,
+                    color: "white",
+                  }))
+                }
+              ></div>
+              <div
+                className="color green"
+                onClick={() =>
+                  setNoteContent((noteContent) => ({
+                    ...noteContent,
+                    color: "green",
+                  }))
+                }
+              ></div>
+              <div
+                className="color yellow"
+                onClick={() =>
+                  setNoteContent((noteContent) => ({
+                    ...noteContent,
+                    color: "yellow",
+                  }))
+                }
+              ></div>
+              <div
+                className="color blue"
+                onClick={() =>
+                  setNoteContent((noteContent) => ({
+                    ...noteContent,
+                    color: "blue",
+                  }))
+                }
+              ></div>
+              <div
+                className="color red"
+                onClick={() =>
+                  setNoteContent((noteContent) => ({
+                    ...noteContent,
+                    color: "red",
+                  }))
+                }
+              ></div>
+            </div>
+          )}
           <MdLabelOutline className="note-icon " />
+
           <AiOutlinePlus
             className="note-icon"
             onClick={() => {
@@ -86,8 +133,12 @@ const NoteCard = ({ editable }) => {
                   payload: notesState.toEdit.id,
                 });
               }
-              notesDispatch({ type: "ADD_NEW_NOTE", payload: noteContent });
-              setNoteContent({ id: uuid(), title: "", body: "", label: "" });
+              notesDispatch({
+                type: "ADD_NEW_NOTE",
+                payload: { note: noteContent },
+              });
+              setNoteContent({ id: uuid(), title: "", body: "" });
+              setShowColors(false);
             }}
           />
         </div>
