@@ -24,7 +24,12 @@ const ArchiveDisplayCard = () => {
                   <p>{item.note.title}</p>
                 </div>
                 <div className="note-display-body">
-                  <p> {item.note.body}</p>
+                  <p>
+                    {" "}
+                    {item.note.body.length > 0 || item.note.title.length > 0
+                      ? item.note.body
+                      : "EMPTY NOTE"}
+                  </p>
                 </div>
                 <div className="note-display-footer">
                   <IoColorPaletteOutline />

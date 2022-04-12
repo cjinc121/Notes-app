@@ -1,0 +1,21 @@
+.label-container{
+  position: absolute;
+  top: 3.1rem;
+ display: flex;
+ flex-direction: column;
+ padding: 1rem;
+ gap: 5px;
+  border: 1px solid black;
+  background-color: #e5e5e5;
+}
+.label-input{
+  display: flex;
+gap: 5px;
+
+}
+@media only screen and (max-width: 500px){
+  
+  .label-container{
+    right: 10px;
+  }
+}

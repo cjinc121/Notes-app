@@ -2,7 +2,6 @@ import "./noteDisplay.css";
 import { useNotesContext } from "../../context/notes-context";
 import { MdDelete, MdOutlineArchive } from "react-icons/md";
 import { BsFillPinFill, BsPin } from "react-icons/bs";
-import { IoColorPaletteOutline } from "react-icons/io5";
 import { GrEdit } from "react-icons/gr";
 import { NoteCard } from "../note-card/noteCard";
 const NoteDisplayCard = () => {
@@ -45,7 +44,17 @@ const NoteDisplayCard = () => {
                   />
                 </div>
                 <div className="note-display-body">
-                  <p> {item.note.body}</p>
+                  <p>
+                    {" "}
+                    {item.note.body.length > 0 || item.note.title.length > 0
+                      ? item.note.body
+                      : "EMPTY NOTE"}
+                  </p>
+                </div>
+                <div className="note-display-labels">
+                  {item.note.label.map((name) => {
+                    return <div className="chip">{name}</div>;
+                  })}
                 </div>
                 <div className="note-display-footer">
                   <GrEdit
@@ -97,7 +106,17 @@ const NoteDisplayCard = () => {
                     />
                   </div>
                   <div className="note-display-body">
-                    <p> {item.note.body}</p>
+                    <p>
+                      {" "}
+                      {item.note.body.length > 0 || item.note.title.length > 0
+                        ? item.note.body
+                        : "EMPTY NOTE"}
+                    </p>
+                  </div>
+                  <div className="note-display-labels">
+                    {item.note.label.map((name) => {
+                      return <div className="chip">{name}</div>;
+                    })}
                   </div>
                   <div className="note-display-footer">
                     <GrEdit

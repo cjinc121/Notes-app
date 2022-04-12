@@ -11,8 +11,8 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  min-height: 5rem;
-  min-width: 12rem;
+  min-height: 7rem;
+  min-width: 14rem;
   padding: 7px;
   background-color: var(--white-color);
 }
@@ -25,6 +25,23 @@
   justify-content: space-evenly;
   gap: 3px;
   cursor: pointer;
+}
+.note-display-labels{
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1px;
+  cursor: pointer;
+}
+.chip {
+  max-width: max-content;
+  margin: 0.2rem;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  padding:0 10px;
+  cursor: pointer;
+}
+.chip:active {
+  opacity: 0.6;
 }
 .white{
   background-color: var(--white-color);

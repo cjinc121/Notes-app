@@ -3,10 +3,13 @@ import { AiFillHome } from "react-icons/ai";
 import { BiArchiveIn } from "react-icons/bi";
 import { BsTrashFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
+import { MdLabelOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useSidebarConext } from "../../context/sidebar-context";
+import { useNotesContext } from "../../context/notes-context";
 const LeftSidebar = () => {
   const { showSidebar } = useSidebarConext();
+  const { notesState } = useNotesContext();
   return (
     <>
       {showSidebar && (
@@ -17,7 +20,15 @@ const LeftSidebar = () => {
               Home
             </Link>
           </div>
-
+          {notesState.uniqueLabels.map((item) => {
+            return (
+              <div className="sidebar-heading">
+                <Link to={`/labels/${item}`}>
+                  <MdLabelOutline className="sidebar-icon" /> {item}
+                </Link>
+              </div>
+            );
+          })}
           <div className="sidebar-heading">
             <Link to="/archive">
               <BiArchiveIn className="sidebar-icon" />

@@ -1,0 +1,12 @@
+
+.chip {
+  max-width: max-content;
+  margin: 0.2rem;
+  border: 2px solid black;
+  border-radius: 1rem;
+  padding: 0.2rem;
+  cursor: pointer;
+}
+.chip:active {
+  opacity: 0.6;
+}

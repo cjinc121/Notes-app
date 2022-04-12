@@ -69,31 +69,17 @@ const notesReducer = (state, action) => {
         return item;
       });
       return { ...state, notes: colorNotes };
-    case "ADD_LABEL":
-      const labelNotes = state.notes.map((item) => {
-        if (item.note.id === action.payload.id) {
-          if (
-            item.label.find((item) => item === action.payload.name) ===
-            undefined
-          )
-            item.label = [...item.label, action.payload.name];
-        }
-        return item;
-      });
-      console.log(state.notes);
-      return { ...state, notes: labelNotes };
-    case "REMOVE_LABEL":
-      const removeLabelNotes = state.notes.map((item) => {
-        if (item.note.id === action.payload.id) {
-          item.label = item.label.filter(
-            (labels) => labels != action.payload.name
-          );
-        }
-        return item;
-      });
-      console.log(state.notes);
-
-      return { ...state, notes: removeLabelNotes };
+    case "ADD_NEW_LABEL":
+      if (
+        state.uniqueLabels.find(
+          (uniqueLabel) => uniqueLabel === action.payload
+        ) === undefined
+      ) {
+        return {
+          ...state,
+          uniqueLabels: [...state.uniqueLabels, action.payload],
+        };
+      } else return { ...state };
     default:
       return state;
   }

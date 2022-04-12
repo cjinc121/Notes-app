@@ -1,0 +1,34 @@
+.color-pallete-button{
+  position:relative;
+}
+
+.color-pallete{
+  position: absolute;
+  top: 3.1rem;
+  display: flex;
+  border: 1px solid black;
+  background-color: #e5e5e5;
+}
+.color{
+  width: 2rem;
+  height: 2rem;
+border-radius: 50%;
+border: 1px solid black;
+margin: 3px;
+cursor: pointer;
+}
+.white{
+  background-color: var(--white-color);
+}
+.blue{
+  background-color: var(--info-color);
+}
+.green{
+  background-color: var(--sucess-color);
+}
+.yellow{
+  background-color: var(--warn-color);
+}
+.red{
+  background-color: var(--error-color);
+}

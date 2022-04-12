@@ -37,40 +37,7 @@
   line-height: 1.2rem;
   resize: none;
 }
-.color-pallete-button{
-  position:relative;
-}
 
-.color-pallete{
-  position: absolute;
-  top: 3.1rem;
-  display: flex;
-  border: 1px solid black;
-  background-color: #e5e5e5;
-}
-.color{
-  width: 2rem;
-  height: 2rem;
-border-radius: 50%;
-border: 1px solid black;
-margin: 3px;
-cursor: pointer;
-}
-.white{
-  background-color: var(--white-color);
-}
-.blue{
-  background-color: var(--info-color);
-}
-.green{
-  background-color: var(--sucess-color);
-}
-.yellow{
-  background-color: var(--warn-color);
-}
-.red{
-  background-color: var(--error-color);
-}
 .note-card-body > textarea::-webkit-scrollbar {
   display: none;
 }
@@ -97,6 +64,10 @@ cursor: pointer;
   font-size: 1.5rem;
   position: relative;
 }
+
+
+
+
 .note-icon {
   cursor: pointer;
 }
@@ -104,4 +75,5 @@ cursor: pointer;
   .note-card {
     width: 100%;
   }
+
 }

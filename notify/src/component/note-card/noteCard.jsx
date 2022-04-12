@@ -5,8 +5,12 @@ import { MdLabelOutline } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useNotesContext } from "../../context/notes-context";
 import { v4 as uuid } from "uuid";
+import { LabelContainer } from "../label-container/LabelContainer";
+import { ChipContainer } from "../chip-container/ChipContainer";
+import { ColorPallete } from "../color-pallete/ColorPallete";
 const NoteCard = ({ editable }) => {
   const [showColors, setShowColors] = useState(false);
+  const [showLabelContainer, setShowLabelContainer] = useState(false);
   const current = new Date();
   const currentDate = `${current.getDate()}/${
     current.getMonth() + 1
@@ -17,8 +21,10 @@ const NoteCard = ({ editable }) => {
     body: "",
     date: currentDate,
     color: "white",
+    label: [],
   });
   const { notesState, notesDispatch } = useNotesContext();
+
   useEffect(() => {
     if (editable) {
       setNoteContent({
@@ -27,6 +33,7 @@ const NoteCard = ({ editable }) => {
         body: notesState.toEdit.body,
         date: notesState.toEdit.date,
         color: notesState.toEdit.color,
+        label: notesState.toEdit.label,
       });
     }
   }, []);
@@ -63,6 +70,12 @@ const NoteCard = ({ editable }) => {
         {
           <div className="note-card-label">
             <p>{noteContent.date}</p>
+            {
+              <ChipContainer
+                setNoteContent={setNoteContent}
+                noteContent={noteContent}
+              />
+            }
           </div>
         }
         <div className="note-buttons">
@@ -73,56 +86,18 @@ const NoteCard = ({ editable }) => {
             }}
           />
           {/* colorPallete */}
-          {showColors && (
-            <div className="color-pallete">
-              <div
-                className="color white"
-                onClick={() =>
-                  setNoteContent((noteContent) => ({
-                    ...noteContent,
-                    color: "white",
-                  }))
-                }
-              ></div>
-              <div
-                className="color green"
-                onClick={() =>
-                  setNoteContent((noteContent) => ({
-                    ...noteContent,
-                    color: "green",
-                  }))
-                }
-              ></div>
-              <div
-                className="color yellow"
-                onClick={() =>
-                  setNoteContent((noteContent) => ({
-                    ...noteContent,
-                    color: "yellow",
-                  }))
-                }
-              ></div>
-              <div
-                className="color blue"
-                onClick={() =>
-                  setNoteContent((noteContent) => ({
-                    ...noteContent,
-                    color: "blue",
-                  }))
-                }
-              ></div>
-              <div
-                className="color red"
-                onClick={() =>
-                  setNoteContent((noteContent) => ({
-                    ...noteContent,
-                    color: "red",
-                  }))
-                }
-              ></div>
-            </div>
+          {showColors && <ColorPallete setNoteContent={setNoteContent} />}
+
+          <MdLabelOutline
+            className="note-icon "
+            onClick={() => setShowLabelContainer(!showLabelContainer)}
+          />
+          {showLabelContainer && (
+            <LabelContainer
+              setNoteContent={setNoteContent}
+              noteContent={noteContent}
+            />
           )}
-          <MdLabelOutline className="note-icon " />
 
           <AiOutlinePlus
             className="note-icon"
@@ -137,8 +112,16 @@ const NoteCard = ({ editable }) => {
                 type: "ADD_NEW_NOTE",
                 payload: { note: noteContent },
               });
-              setNoteContent({ id: uuid(), title: "", body: "" });
+              setNoteContent({
+                id: uuid(),
+                title: "",
+                body: "",
+                date: currentDate,
+                color: "white",
+                label: [],
+              });
               setShowColors(false);
+              setShowLabelContainer(false);
             }}
           />
         </div>
