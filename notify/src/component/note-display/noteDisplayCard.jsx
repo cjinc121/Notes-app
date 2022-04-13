@@ -4,6 +4,8 @@ import { MdDelete, MdOutlineArchive } from "react-icons/md";
 import { BsFillPinFill, BsPin } from "react-icons/bs";
 import { GrEdit } from "react-icons/gr";
 import { NoteCard } from "../note-card/noteCard";
+import parse from "html-react-parser";
+
 const NoteDisplayCard = () => {
   const { notesState, notesDispatch } = useNotesContext();
   return (
@@ -22,8 +24,12 @@ const NoteDisplayCard = () => {
           </div>
         </div>
       )}
-
-      <h3> Pinned:</h3>
+      {notesState.notes.filter(
+        (item) =>
+          item.isTrash === false &&
+          item.isPin === true &&
+          item.isArchive === false
+      ).length > 0 && <h3> Pinned:</h3>}
       <div className="note-display-container">
         {notesState.notes
           .filter(
@@ -47,7 +53,7 @@ const NoteDisplayCard = () => {
                   <p>
                     {" "}
                     {item.note.body.length > 0 || item.note.title.length > 0
-                      ? item.note.body
+                      ? parse(item.note.body)
                       : "EMPTY NOTE"}
                   </p>
                 </div>
@@ -109,7 +115,7 @@ const NoteDisplayCard = () => {
                     <p>
                       {" "}
                       {item.note.body.length > 0 || item.note.title.length > 0
-                        ? item.note.body
+                        ? parse(item.note.body)
                         : "EMPTY NOTE"}
                     </p>
                   </div>

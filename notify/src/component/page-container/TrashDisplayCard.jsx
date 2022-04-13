@@ -1,6 +1,7 @@
 import { useNotesContext } from "../../context/notes-context";
 import { RiDeleteBin7Fill } from "react-icons/ri";
 import { IoArrowUndoOutline } from "react-icons/io5";
+import parse from "html-react-parser";
 import "../note-display/noteDisplay.css";
 const TrashDisplayCard = () => {
   const { notesState, notesDispatch } = useNotesContext();
@@ -25,7 +26,7 @@ const TrashDisplayCard = () => {
                   <p>
                     {" "}
                     {item.note.body.length > 0 || item.note.title.length > 0
-                      ? item.note.body
+                      ? parse(item.note.body)
                       : "EMPTY NOTE"}
                   </p>
                 </div>

@@ -2,6 +2,8 @@ import { useNotesContext } from "../../context/notes-context";
 import { MdOutlineUnarchive, MdDelete } from "react-icons/md";
 import { IoColorPaletteOutline } from "react-icons/io5";
 import "../note-display/noteDisplay.css";
+import parse from "html-react-parser";
+
 const ArchiveDisplayCard = () => {
   const { notesState, notesDispatch } = useNotesContext();
 
@@ -27,7 +29,7 @@ const ArchiveDisplayCard = () => {
                   <p>
                     {" "}
                     {item.note.body.length > 0 || item.note.title.length > 0
-                      ? item.note.body
+                      ? parse(item.note.body)
                       : "EMPTY NOTE"}
                   </p>
                 </div>

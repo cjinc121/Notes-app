@@ -1,6 +1,5 @@
 .note-card {
   width: 60%;
-  min-height: 7rem;
   max-height: max-content;
   border: 1px black solid;
   background-color: var(--white-color);

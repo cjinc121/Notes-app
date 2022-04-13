@@ -4,6 +4,8 @@ import { MdDelete, MdOutlineArchive } from "react-icons/md";
 import { GrEdit } from "react-icons/gr";
 import { NoteCard } from "../note-card/noteCard";
 import { useParams } from "react-router-dom";
+import parse from "html-react-parser";
+
 const LabelDisplayCard = () => {
   const { notesState, notesDispatch } = useNotesContext();
   const { labelName } = useParams();
@@ -38,7 +40,7 @@ const LabelDisplayCard = () => {
                     <p>
                       {" "}
                       {item.note.body.length > 0 || item.note.title.length > 0
-                        ? item.note.body
+                        ? parse(item.note.body)
                         : "EMPTY NOTE"}
                     </p>
                   </div>
