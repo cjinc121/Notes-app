@@ -2,9 +2,10 @@ import "./noteDisplay.css";
 import { useNotesContext } from "../../context/notes-context";
 import { MdDelete, MdOutlineArchive } from "react-icons/md";
 import { BsFillPinFill, BsPin } from "react-icons/bs";
-import { IoColorPaletteOutline } from "react-icons/io5";
 import { GrEdit } from "react-icons/gr";
 import { NoteCard } from "../note-card/noteCard";
+import parse from "html-react-parser";
+
 const NoteDisplayCard = () => {
   const { notesState, notesDispatch } = useNotesContext();
   return (
@@ -23,8 +24,12 @@ const NoteDisplayCard = () => {
           </div>
         </div>
       )}
-
-      <h3> Pinned:</h3>
+      {notesState.notes.filter(
+        (item) =>
+          item.isTrash === false &&
+          item.isPin === true &&
+          item.isArchive === false
+      ).length > 0 && <h3> Pinned:</h3>}
       <div className="note-display-container">
         {notesState.notes
           .filter(
@@ -35,7 +40,7 @@ const NoteDisplayCard = () => {
           )
           .map((item) => {
             return (
-              <div className="note-display-card">
+              <div className={`note-display-card ${item.note.color}`}>
                 <div className="note-display-title">
                   <p>{item.note.title}</p>
                   <BsFillPinFill
@@ -45,7 +50,17 @@ const NoteDisplayCard = () => {
                   />
                 </div>
                 <div className="note-display-body">
-                  <p> {item.note.body}</p>
+                  <p>
+                    {" "}
+                    {item.note.body.length > 0 || item.note.title.length > 0
+                      ? parse(item.note.body)
+                      : "EMPTY NOTE"}
+                  </p>
+                </div>
+                <div className="note-display-labels">
+                  {item.note.label.map((name) => {
+                    return <div className="chip">{name}</div>;
+                  })}
                 </div>
                 <div className="note-display-footer">
                   <GrEdit
@@ -59,7 +74,6 @@ const NoteDisplayCard = () => {
                       });
                     }}
                   />
-                  <IoColorPaletteOutline />
                   <MdOutlineArchive
                     onClick={() =>
                       notesDispatch({ type: "ARCHIVE", payload: item.note.id })
@@ -88,7 +102,7 @@ const NoteDisplayCard = () => {
           .map((item) => {
             return (
               <>
-                <div className="note-display-card">
+                <div className={`note-display-card ${item.note.color}`}>
                   <div className="note-display-title">
                     <p>{item.note.title}</p>
                     <BsPin
@@ -98,8 +112,23 @@ const NoteDisplayCard = () => {
                     />
                   </div>
                   <div className="note-display-body">
-                    <p> {item.note.body}</p>
+                    <p>
+                      {" "}
+                      {item.note.body.length > 0 || item.note.title.length > 0
+                        ? parse(item.note.body)
+                        : "EMPTY NOTE"}
+                    </p>
                   </div>
+                  <div className="note-display-labels">
+                    {item.note.label.map((name) => {
+                      return <div className="chip">{name}</div>;
+                    })}
+                  </div>
+                  {item.note.priority.length > 0 && (
+                    <div className="note-display-priority">
+                      <div className="chip">{item.note.priority}</div>
+                    </div>
+                  )}
                   <div className="note-display-footer">
                     <GrEdit
                       onClick={() => {
@@ -112,7 +141,6 @@ const NoteDisplayCard = () => {
                         });
                       }}
                     />
-                    <IoColorPaletteOutline />
                     <MdOutlineArchive
                       onClick={() =>
                         notesDispatch({

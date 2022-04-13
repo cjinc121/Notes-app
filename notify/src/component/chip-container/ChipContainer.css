@@ -1,0 +1,18 @@
+.chip-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+.chip {
+  max-width: max-content;
+  margin: 0.2rem;
+  border: 2px solid black;
+  border-radius: 1rem;
+  padding: 0.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.chip:active {
+  opacity: 0.6;
+}

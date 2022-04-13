@@ -1,11 +1,20 @@
 import "./noteCard.css";
 import { useEffect, useState } from "react";
 import { IoColorPaletteOutline } from "react-icons/io5";
-import { MdLabelOutline } from "react-icons/md";
+import { MdLabelOutline, MdLowPriority } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useNotesContext } from "../../context/notes-context";
 import { v4 as uuid } from "uuid";
+import { LabelContainer } from "../label-container/LabelContainer";
+import { ChipContainer } from "../chip-container/ChipContainer";
+import { ColorPallete } from "../color-pallete/ColorPallete";
+import { PriorityContainer } from "../priority-container/PriorityContainer";
+import { Editor } from "../editor/editor";
 const NoteCard = ({ editable }) => {
+  const [showColors, setShowColors] = useState(false);
+  const [showLabelContainer, setShowLabelContainer] = useState(false);
+  const [showPriority, setShowPriority] = useState(false);
+  const [expand, setExpand] = useState(true);
   const current = new Date();
   const currentDate = `${current.getDate()}/${
     current.getMonth() + 1
@@ -15,9 +24,12 @@ const NoteCard = ({ editable }) => {
     title: "",
     body: "",
     date: currentDate,
-    label: "",
+    color: "white",
+    priority: "",
+    label: [],
   });
   const { notesState, notesDispatch } = useNotesContext();
+
   useEffect(() => {
     if (editable) {
       setNoteContent({
@@ -25,17 +37,19 @@ const NoteCard = ({ editable }) => {
         title: notesState.toEdit.title,
         body: notesState.toEdit.body,
         date: notesState.toEdit.date,
+        color: notesState.toEdit.color,
+        priority: notesState.toEdit.priority,
         label: notesState.toEdit.label,
       });
     }
   }, []);
   return (
-    <div className="note-card">
+    <div className={`note-card ${noteContent.color}`}>
       <div className="note-card-title">
         <input
           type="text"
           placeholder="Title..."
-          className="note-title"
+          className={`note-title ${noteContent.color}`}
           onChange={(e) =>
             setNoteContent((noteContent) => ({
               ...noteContent,
@@ -43,55 +57,92 @@ const NoteCard = ({ editable }) => {
             }))
           }
           value={noteContent.title}
+          onClick={() => setExpand(true)}
         />
       </div>
-      <div className="note-card-body">
-        <textarea
-          onChange={(e) =>
-            setNoteContent((noteContent) => ({
-              ...noteContent,
-              body: e.target.value,
-            }))
-          }
-          contentEditable="true"
-          placeholder="Add a note.."
-          value={noteContent.body}
-        ></textarea>
-      </div>
-      <div className="note-card-footer">
-        <div className="note-card-label">
-          <p>{noteContent.date}</p>
-          <input
-            type="text"
-            placeholder="Add a Label..."
-            className="note-label"
-            onChange={(e) =>
-              setNoteContent((noteContent) => ({
-                ...noteContent,
-                label: e.target.value,
-              }))
-            }
-            value={noteContent.label}
-          />
-        </div>
-        <div className="note-buttons">
-          <IoColorPaletteOutline className="note-icon " />
-          <MdLabelOutline className="note-icon " />
-          <AiOutlinePlus
-            className="note-icon"
-            onClick={() => {
-              if (editable) {
-                notesDispatch({
-                  type: "PERMENANT_DELETE",
-                  payload: notesState.toEdit.id,
-                });
+      {expand && (
+        <>
+          <div className="note-card-body">
+            <Editor noteContent={noteContent} setNoteContent={setNoteContent} />
+          </div>
+
+          <div className="note-card-footer">
+            <div className="note-card-label">
+              <p>{noteContent.date}</p>
+              {
+                <ChipContainer
+                  setNoteContent={setNoteContent}
+                  noteContent={noteContent}
+                />
               }
-              notesDispatch({ type: "ADD_NEW_NOTE", payload: noteContent });
-              setNoteContent({ id: uuid(), title: "", body: "", label: "" });
-            }}
-          />
-        </div>
-      </div>
+              {noteContent.priority.length > 0 && (
+                <div className="chip">{noteContent.priority}</div>
+              )}
+            </div>
+            <div className="note-buttons">
+              <MdLowPriority
+                className="note-icon "
+                onClick={() => setShowPriority(!showPriority)}
+              />
+              {showPriority && (
+                <PriorityContainer
+                  setNoteContent={setNoteContent}
+                  noteContent={noteContent}
+                />
+              )}
+
+              <IoColorPaletteOutline
+                className="note-icon "
+                onClick={() => {
+                  setShowColors(!showColors);
+                }}
+              />
+              {/* colorPallete */}
+              {showColors && <ColorPallete setNoteContent={setNoteContent} />}
+
+              <MdLabelOutline
+                className="note-icon "
+                onClick={() => setShowLabelContainer(!showLabelContainer)}
+              />
+              {showLabelContainer && (
+                <LabelContainer
+                  setNoteContent={setNoteContent}
+                  noteContent={noteContent}
+                />
+              )}
+
+              <AiOutlinePlus
+                className="note-icon"
+                onClick={() => {
+                  if (editable) {
+                    notesDispatch({
+                      type: "PERMENANT_DELETE",
+                      payload: notesState.toEdit.id,
+                    });
+                  }
+                  notesDispatch({
+                    type: "ADD_NEW_NOTE",
+                    payload: { note: noteContent },
+                  });
+                  setNoteContent({
+                    id: uuid(),
+                    title: "",
+                    body: "",
+                    date: currentDate,
+                    color: "white",
+                    priority: "",
+                    label: [],
+                  });
+                  setShowColors(false);
+                  setShowLabelContainer(false);
+                  setShowPriority(false);
+                  setExpand(false);
+                }}
+              />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
