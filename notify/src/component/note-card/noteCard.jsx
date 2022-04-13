@@ -14,7 +14,7 @@ const NoteCard = ({ editable }) => {
   const [showColors, setShowColors] = useState(false);
   const [showLabelContainer, setShowLabelContainer] = useState(false);
   const [showPriority, setShowPriority] = useState(false);
-  const [expand, setExpand] = useState(false);
+  const [expand, setExpand] = useState(true);
   const current = new Date();
   const currentDate = `${current.getDate()}/${
     current.getMonth() + 1
