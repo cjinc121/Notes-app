@@ -1,16 +1,18 @@
 import "./noteCard.css";
 import { useEffect, useState } from "react";
 import { IoColorPaletteOutline } from "react-icons/io5";
-import { MdLabelOutline } from "react-icons/md";
+import { MdLabelOutline, MdLowPriority } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useNotesContext } from "../../context/notes-context";
 import { v4 as uuid } from "uuid";
 import { LabelContainer } from "../label-container/LabelContainer";
 import { ChipContainer } from "../chip-container/ChipContainer";
 import { ColorPallete } from "../color-pallete/ColorPallete";
+import { PriorityContainer } from "../priority-container/PriorityContainer";
 const NoteCard = ({ editable }) => {
   const [showColors, setShowColors] = useState(false);
   const [showLabelContainer, setShowLabelContainer] = useState(false);
+  const [showPriority, setShowPriority] = useState(false);
   const current = new Date();
   const currentDate = `${current.getDate()}/${
     current.getMonth() + 1
@@ -21,6 +23,7 @@ const NoteCard = ({ editable }) => {
     body: "",
     date: currentDate,
     color: "white",
+    priority: "",
     label: [],
   });
   const { notesState, notesDispatch } = useNotesContext();
@@ -33,6 +36,7 @@ const NoteCard = ({ editable }) => {
         body: notesState.toEdit.body,
         date: notesState.toEdit.date,
         color: notesState.toEdit.color,
+        priority: notesState.toEdit.priority,
         label: notesState.toEdit.label,
       });
     }
@@ -76,9 +80,23 @@ const NoteCard = ({ editable }) => {
                 noteContent={noteContent}
               />
             }
+            {noteContent.priority.length > 0 && (
+              <div className="chip">{noteContent.priority}</div>
+            )}
           </div>
         }
         <div className="note-buttons">
+          <MdLowPriority
+            className="note-icon "
+            onClick={() => setShowPriority(!showPriority)}
+          />
+          {showPriority && (
+            <PriorityContainer
+              setNoteContent={setNoteContent}
+              noteContent={noteContent}
+            />
+          )}
+
           <IoColorPaletteOutline
             className="note-icon "
             onClick={() => {
@@ -118,10 +136,12 @@ const NoteCard = ({ editable }) => {
                 body: "",
                 date: currentDate,
                 color: "white",
+                priority: "",
                 label: [],
               });
               setShowColors(false);
               setShowLabelContainer(false);
+              setShowPriority(false);
             }}
           />
         </div>

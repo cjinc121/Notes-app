@@ -118,6 +118,11 @@ const NoteDisplayCard = () => {
                       return <div className="chip">{name}</div>;
                     })}
                   </div>
+                  {item.note.priority.length > 0 && (
+                    <div className="note-display-priority">
+                      <div className="chip">{item.note.priority}</div>
+                    </div>
+                  )}
                   <div className="note-display-footer">
                     <GrEdit
                       onClick={() => {

@@ -32,6 +32,12 @@
   gap: 1px;
   cursor: pointer;
 }
+.note-display-priority{
+  display: flex;
+  justify-content: center;
+  gap: 1px;
+  cursor: pointer;
+}
 .chip {
   max-width: max-content;
   margin: 0.2rem;

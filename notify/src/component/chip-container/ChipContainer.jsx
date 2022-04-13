@@ -3,7 +3,7 @@ import { ImCancelCircle } from "react-icons/im";
 
 const ChipContainer = ({ setNoteContent, noteContent }) => {
   return (
-    <>
+    <div className="chip-container">
       {noteContent.label.map((item) => {
         return (
           <div class="chip">
@@ -21,7 +21,7 @@ const ChipContainer = ({ setNoteContent, noteContent }) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 export { ChipContainer };
