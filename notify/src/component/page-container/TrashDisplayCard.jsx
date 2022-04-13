@@ -18,7 +18,7 @@ const TrashDisplayCard = () => {
           .filter((item) => item.isTrash === true)
           .map((item) => {
             return (
-              <div className="note-display-card">
+              <div className={`note-display-card ${item.note.color}`}>
                 <div className="note-display-title">
                   <p>{item.note.title}</p>
                 </div>

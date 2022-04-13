@@ -5,6 +5,12 @@
   justify-content: center;
   align-items: center;
 }
+img{
+ 
+    width: 10rem;
+    height: 10rem;
+  
+}
 .note-display-card {
   border: 1px solid black;
   border-radius: 5px;

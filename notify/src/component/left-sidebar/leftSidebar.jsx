@@ -8,14 +8,14 @@ import { Link } from "react-router-dom";
 import { useSidebarConext } from "../../context/sidebar-context";
 import { useNotesContext } from "../../context/notes-context";
 const LeftSidebar = () => {
-  const { showSidebar, setShowSidebar } = useSidebarConext();
+  const { showSidebar } = useSidebarConext();
   const { notesState } = useNotesContext();
   return (
     <>
       {showSidebar && (
         <div className="sidebar">
           <div className="sidebar-heading">
-            <Link onClick={() => setShowSidebar(false)} to="/">
+            <Link to="/">
               <AiFillHome className="sidebar-icon" />
               Home
             </Link>
@@ -23,23 +23,20 @@ const LeftSidebar = () => {
           {notesState.uniqueLabels.map((item) => {
             return (
               <div className="sidebar-heading">
-                <Link
-                  onClick={() => setShowSidebar(false)}
-                  to={`/labels/${item}`}
-                >
+                <Link to={`/labels/${item}`}>
                   <MdLabelOutline className="sidebar-icon" /> {item}
                 </Link>
               </div>
             );
           })}
           <div className="sidebar-heading">
-            <Link onClick={() => setShowSidebar(false)} to="/archive">
+            <Link to="/archive">
               <BiArchiveIn className="sidebar-icon" />
               Archive
             </Link>
           </div>
           <div className="sidebar-heading">
-            <Link onClick={() => setShowSidebar(false)} to="/trash">
+            <Link to="/trash">
               <BsTrashFill className="sidebar-icon" />
               Trash
             </Link>

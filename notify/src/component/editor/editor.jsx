@@ -1,6 +1,6 @@
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
+import "./editor.css";
 const Editor = ({ noteContent, setNoteContent }) => {
   return (
     <ReactQuill
@@ -12,7 +12,7 @@ const Editor = ({ noteContent, setNoteContent }) => {
           body: e,
         }));
       }}
-      className={`${noteContent.color}`}
+      className={`${noteContent.color} editor`}
       modules={modules}
       formats={formats}
       placeholder="Take a Note..."

@@ -21,7 +21,7 @@ const ArchiveDisplayCard = () => {
           .filter((item) => item.isArchive === true && item.isTrash === false)
           .map((item) => {
             return (
-              <div className="note-display-card">
+              <div className={`note-display-card ${item.note.color}`}>
                 <div className="note-display-title">
                   <p>{item.note.title}</p>
                 </div>
