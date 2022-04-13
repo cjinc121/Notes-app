@@ -34,7 +34,6 @@ const ArchiveDisplayCard = () => {
                   </p>
                 </div>
                 <div className="note-display-footer">
-                  <IoColorPaletteOutline />
                   <MdOutlineUnarchive
                     onClick={() =>
                       notesDispatch({
