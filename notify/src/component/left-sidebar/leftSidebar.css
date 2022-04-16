@@ -19,6 +19,9 @@
 }
 .sidebar-icon {
   font-size: 1.5rem;
+  position: relative;
+    top: 3px;
+    margin-right: 10px;
 }
 .button {
   border-radius: 0;
