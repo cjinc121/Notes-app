@@ -6,6 +6,7 @@ import { makeServer } from "./server";
 import { NotesContextProvider } from "./context/notes-context";
 import { BrowserRouter } from "react-router-dom";
 import { SidebarContextProvider } from "./context/sidebar-context";
+import { FilterContextProvider } from "./context/filter-context";
 // Call make Server
 makeServer();
 
@@ -14,7 +15,9 @@ ReactDOM.render(
     <BrowserRouter>
       <SidebarContextProvider>
         <NotesContextProvider>
-          <App />
+          <FilterContextProvider>
+            <App />
+          </FilterContextProvider>
         </NotesContextProvider>
       </SidebarContextProvider>
     </BrowserRouter>
