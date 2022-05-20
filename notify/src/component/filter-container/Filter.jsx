@@ -95,7 +95,7 @@ const Filter = () => {
       </div>
       <div className="filter-options">
         <button
-          className=" button contained-button secondary-button"
+          className="clear-button button contained-button secondary-button"
           onClick={() => filterDispatch({ type: "CLEAR_ALL" })}
         >
           clear all

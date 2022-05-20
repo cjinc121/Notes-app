@@ -15,21 +15,32 @@ const notesReducer = (state, action) => {
         editModal: false,
         toEdit: "",
       };
+    case "UPDATE_NOTES":
+      const newNotes = action.payload;
+      return { ...state };
+
+    case "INITIAL":
+      return {
+        ...state,
+        notes: action.payload,
+        editModal: false,
+        toEdit: "",
+      };
     case "TRASH":
       const TrashNotes = state.notes.map((item) => {
-        if (item.note.id === action.payload) item.isTrash = true;
+        if (item.note._id === action.payload) item.isTrash = true;
         return item;
       });
       return { ...state, notes: TrashNotes };
     case "UNTRASH":
       const UnTrashNotes = state.notes.map((item) => {
-        if (item.note.id === action.payload) item.isTrash = false;
+        if (item.note._id === action.payload) item.isTrash = false;
         return item;
       });
       return { ...state, notes: UnTrashNotes };
     case "PERMENANT_DELETE":
       const AfterDeleteNote = state.notes.filter(
-        (item) => item.note.id !== action.payload
+        (item) => item.note._id !== action.payload
       );
       return { ...state, notes: AfterDeleteNote };
     case "PIN":
@@ -46,13 +57,13 @@ const notesReducer = (state, action) => {
       return { ...state, notes: UnpinNotes };
     case "ARCHIVE":
       const archiveNotes = state.notes.map((item) => {
-        if (item.note.id === action.payload) item.isArchive = true;
+        if (item.note._id === action.payload) item.isArchive = true;
         return item;
       });
       return { ...state, notes: archiveNotes };
     case "UNARCHIVE":
       const UnarchiveNotes = state.notes.map((item) => {
-        if (item.note.id === action.payload) item.isArchive = false;
+        if (item.note._id === action.payload) item.isArchive = false;
         return item;
       });
       return { ...state, notes: UnarchiveNotes };

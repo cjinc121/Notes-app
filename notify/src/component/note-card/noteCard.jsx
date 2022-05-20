@@ -30,7 +30,13 @@ const NoteCard = ({ editable }) => {
     priority: "",
     label: [],
   });
-  const { notesState, notesDispatch } = useNotesContext();
+  const {
+    notesState,
+    notesDispatch,
+    addNotesHandler,
+    // updateNoteHandler,
+    removeFromNotesHandler,
+  } = useNotesContext();
   useEffect(() => {
     if (editable) {
       setNoteContent({
@@ -129,15 +135,9 @@ const NoteCard = ({ editable }) => {
                   className="note-icon"
                   onClick={() => {
                     if (editable) {
-                      notesDispatch({
-                        type: "PERMENANT_DELETE",
-                        payload: notesState.toEdit.id,
-                      });
+                      removeFromNotesHandler(notesState.toEdit._id);
                     }
-                    notesDispatch({
-                      type: "ADD_NEW_NOTE",
-                      payload: { note: noteContent },
-                    });
+                    addNotesHandler(noteContent);
                     setNoteContent({
                       id: uuid(),
                       title: "",

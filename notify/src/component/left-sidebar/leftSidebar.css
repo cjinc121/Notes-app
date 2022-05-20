@@ -14,8 +14,8 @@
   padding-left: 1rem;
   cursor: pointer;
 }
-.sidebar-heading:hover {
-  color: var(--warn-color);
+.sidebar-heading:active {
+ color: var(--warn-color);
 }
 .sidebar-icon {
   font-size: 1.5rem;

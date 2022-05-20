@@ -38,6 +38,14 @@
 .search-bar .icon {
   font-size: 1.5rem;
 }
+.right-navbar{
+  margin-left: auto;
+}
+.right-navbar .icon{
+  font-size: 1.5rem;
+margin: 1rem;
+cursor: pointer;
+}
 @media only screen and (max-width: 500px){
   .hamburger-button{
     display: inline;

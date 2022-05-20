@@ -3,10 +3,19 @@ import { MdOutlineUnarchive, MdDelete } from "react-icons/md";
 import { IoColorPaletteOutline } from "react-icons/io5";
 import "../note-display/noteDisplay.css";
 import parse from "html-react-parser";
+import { useEffect } from "react";
 
 const ArchiveDisplayCard = () => {
-  const { notesState, notesDispatch } = useNotesContext();
-
+  const {
+    notesState,
+    notesDispatch,
+    restoreFromArchiveshandler,
+    deleteFromArchivesHandler,
+    getArchivedNotesHandler,
+  } = useNotesContext();
+  useEffect(() => {
+    getArchivedNotesHandler();
+  }, []);
   return (
     <>
       <div className="note-display-container">
@@ -35,17 +44,14 @@ const ArchiveDisplayCard = () => {
                 </div>
                 <div className="note-display-footer">
                   <MdOutlineUnarchive
-                    onClick={() =>
-                      notesDispatch({
-                        type: "UNARCHIVE",
-                        payload: item.note.id,
-                      })
-                    }
+                    onClick={() => {
+                      restoreFromArchiveshandler(item.note, item.note._id);
+                    }}
                   />
                   <MdDelete
-                    onClick={() =>
-                      notesDispatch({ type: "TRASH", payload: item.note.id })
-                    }
+                    onClick={() => {
+                      deleteFromArchivesHandler(item.note._id);
+                    }}
                   />
                 </div>
               </div>

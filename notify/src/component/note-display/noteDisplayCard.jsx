@@ -6,10 +6,17 @@ import { GrEdit } from "react-icons/gr";
 import { NoteCard } from "../note-card/noteCard";
 import parse from "html-react-parser";
 import { useFilterContext } from "../../context/filter-context";
+import { useEffect } from "react";
 
 const NoteDisplayCard = () => {
-  const { notesState, notesDispatch } = useNotesContext();
+  const { notesState, notesDispatch, getNotesHandler, addToArchiveHandler } =
+    useNotesContext();
   const { filterData } = useFilterContext();
+
+  useEffect(() => {
+    getNotesHandler();
+  }, []);
+
   return (
     <>
       {notesState.editModal && (
@@ -77,9 +84,9 @@ const NoteDisplayCard = () => {
                     }}
                   />
                   <MdOutlineArchive
-                    onClick={() =>
-                      notesDispatch({ type: "ARCHIVE", payload: item.note.id })
-                    }
+                    onClick={() => {
+                      addToArchiveHandler(item.note, item.note._id);
+                    }}
                   />
                   <MdDelete
                     onClick={() =>
@@ -137,16 +144,13 @@ const NoteDisplayCard = () => {
                     }}
                   />
                   <MdOutlineArchive
-                    onClick={() =>
-                      notesDispatch({
-                        type: "ARCHIVE",
-                        payload: item.note.id,
-                      })
-                    }
+                    onClick={() => {
+                      addToArchiveHandler(item.note, item.note._id);
+                    }}
                   />
                   <MdDelete
                     onClick={() =>
-                      notesDispatch({ type: "TRASH", payload: item.note.id })
+                      notesDispatch({ type: "TRASH", payload: item.note._id })
                     }
                   />
                 </div>

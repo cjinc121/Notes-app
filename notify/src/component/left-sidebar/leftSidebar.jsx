@@ -2,7 +2,7 @@ import "./leftSidebar.css";
 import { AiFillHome } from "react-icons/ai";
 import { BiArchiveIn } from "react-icons/bi";
 import { BsTrashFill } from "react-icons/bs";
-import { CgProfile } from "react-icons/cg";
+
 import { MdLabelOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useSidebarConext } from "../../context/sidebar-context";
@@ -40,10 +40,6 @@ const LeftSidebar = () => {
               <BsTrashFill className="sidebar-icon" />
               Trash
             </Link>
-          </div>
-          <div className="sidebar-heading">
-            <CgProfile className="sidebar-icon" />
-            Profile
           </div>
         </div>
       )}

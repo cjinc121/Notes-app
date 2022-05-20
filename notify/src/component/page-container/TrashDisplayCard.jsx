@@ -4,7 +4,8 @@ import { IoArrowUndoOutline } from "react-icons/io5";
 import parse from "html-react-parser";
 import "../note-display/noteDisplay.css";
 const TrashDisplayCard = () => {
-  const { notesState, notesDispatch } = useNotesContext();
+  const { notesState, notesDispatch, removeFromNotesHandler } =
+    useNotesContext();
 
   return (
     <>
@@ -33,16 +34,11 @@ const TrashDisplayCard = () => {
                 <div className="note-display-footer">
                   <IoArrowUndoOutline
                     onClick={() =>
-                      notesDispatch({ type: "UNTRASH", payload: item.note.id })
+                      notesDispatch({ type: "UNTRASH", payload: item.note._id })
                     }
                   />
                   <RiDeleteBin7Fill
-                    onClick={() =>
-                      notesDispatch({
-                        type: "PERMENANT_DELETE",
-                        payload: item.note.id,
-                      })
-                    }
+                    onClick={() => removeFromNotesHandler(item.note._id)}
                   />
                 </div>
               </div>
