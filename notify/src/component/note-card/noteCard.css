@@ -1,5 +1,5 @@
 .note-card {
-  width: 60%;
+  width: 100%;
   max-height: max-content;
   border: 1px black solid;
   background-color: var(--white-color);
@@ -82,7 +82,10 @@
   position: fixed;
   bottom: 3.5rem;
   right: 1rem;
-  border-radius: 0.5rem;
+  border-radius:50%;
+color: var(--warn-color);
+font-size: 3.5rem;
+cursor: pointer;
 }
 
 @media only screen and (max-width: 500px){

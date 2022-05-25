@@ -12,7 +12,7 @@ const SignUp = () => {
     password: "",
   });
   return (
-    <div>
+    <div className="auth-page">
       <Header />
       <div className="authentication-card-container">
         <h3>Sign Up</h3>
@@ -46,14 +46,9 @@ const SignUp = () => {
             setSignUser({ ...signUser, password: e.target.value })
           }
         />
-        <label>
-          <input id="checkbox-2" name="checkbox" type="checkbox" />I accept
-          Terms & Conditions
-        </label>
-
         <div className="button-row-4">
           <button
-            className="button contained-button primary-button"
+            className="button contained-button "
             onClick={() => signUpHandler(signUser)}
           >
             Create New Account

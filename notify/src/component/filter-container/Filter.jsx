@@ -1,7 +1,7 @@
 import { useFilterContext } from "../../context/filter-context";
 import { useNotesContext } from "../../context/notes-context";
 import "./Filter.css";
-const Filter = () => {
+const Filter = ({ setShowFilter, showFilter }) => {
   const { filterState, filterDispatch } = useFilterContext();
   const { notesState } = useNotesContext();
   return (
@@ -99,6 +99,12 @@ const Filter = () => {
           onClick={() => filterDispatch({ type: "CLEAR_ALL" })}
         >
           clear all
+        </button>
+        <button
+          className="clear-button button contained-button secondary-button"
+          onClick={() => setShowFilter(!showFilter)}
+        >
+          Apply
         </button>
       </div>
     </div>

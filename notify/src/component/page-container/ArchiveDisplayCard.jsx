@@ -1,6 +1,5 @@
 import { useNotesContext } from "../../context/notes-context";
 import { MdOutlineUnarchive, MdDelete } from "react-icons/md";
-import { IoColorPaletteOutline } from "react-icons/io5";
 import "../note-display/noteDisplay.css";
 import parse from "html-react-parser";
 import { useEffect } from "react";
@@ -8,7 +7,6 @@ import { useEffect } from "react";
 const ArchiveDisplayCard = () => {
   const {
     notesState,
-    notesDispatch,
     restoreFromArchiveshandler,
     deleteFromArchivesHandler,
     getArchivedNotesHandler,
@@ -18,7 +16,7 @@ const ArchiveDisplayCard = () => {
   }, []);
   return (
     <>
-      <div className="note-display-container">
+      <div className="note-display-container" style={{ margin: " auto " }}>
         <h3>
           {notesState.notes.filter(
             (item) => item.isArchive === true && item.isTrash === false

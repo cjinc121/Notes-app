@@ -9,7 +9,7 @@ const TrashDisplayCard = () => {
 
   return (
     <>
-      <div className="note-display-container">
+      <div className="note-display-container" style={{ margin: " auto " }}>
         <h3>
           {notesState.notes.filter((item) => item.isTrash === true).length > 0
             ? "TRASH NOTES"

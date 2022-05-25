@@ -11,6 +11,7 @@ import { ColorPallete } from "../color-pallete/ColorPallete";
 import { PriorityContainer } from "../priority-container/PriorityContainer";
 import { Editor } from "../editor/editor";
 import { Filter } from "../filter-container/Filter";
+import { HiFilter } from "react-icons/hi";
 const NoteCard = ({ editable }) => {
   const [showColors, setShowColors] = useState(false);
   const [showLabelContainer, setShowLabelContainer] = useState(false);
@@ -51,14 +52,19 @@ const NoteCard = ({ editable }) => {
     }
   }, []);
   return (
-    <>
-      <button
-        className="filter-button button primary-button"
+    <div className="note-card-container">
+      <HiFilter
+        className="filter-button"
         onClick={() => setShowFilter(!showFilter)}
+      />
+      {/* <button
+        className="filter-button button primary-button"
       >
         Filter
-      </button>
-      {showFilter && <Filter />}
+      </button> */}
+      {showFilter && (
+        <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
+      )}
 
       <div className={`note-card ${noteContent.color}`}>
         <div className="note-card-title">
@@ -126,6 +132,8 @@ const NoteCard = ({ editable }) => {
                 />
                 {showLabelContainer && (
                   <LabelContainer
+                    showLabelContainer={showLabelContainer}
+                    setShowLabelContainer={setShowLabelContainer}
                     setNoteContent={setNoteContent}
                     noteContent={noteContent}
                   />
@@ -158,7 +166,7 @@ const NoteCard = ({ editable }) => {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 };
 export { NoteCard };

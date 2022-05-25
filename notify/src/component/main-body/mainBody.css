@@ -3,10 +3,11 @@
   flex-direction: column;
   gap: 2rem;
   align-items: center;
-  width: 70%;
+  width: 100%;
   margin: 0.5rem;
 }
 @media only screen and (max-width: 500px){
   .main-body{
-  width: 100%;}
+z-index: 1;
+  }
 }

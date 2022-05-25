@@ -1,8 +1,14 @@
 import { useNotesContext } from "../../context/notes-context";
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
+import { ImCancelCircle } from "react-icons/im";
 import "./LabelContainer.css";
-const LabelContainer = ({ setNoteContent, noteContent }) => {
+const LabelContainer = ({
+  showLabelContainer,
+  setShowLabelContainer,
+  setNoteContent,
+  noteContent,
+}) => {
   const { notesState, notesDispatch } = useNotesContext();
   const [currentLabel, setcurrentLabel] = useState("");
   function isChecked(note, labelName) {
@@ -27,6 +33,9 @@ const LabelContainer = ({ setNoteContent, noteContent }) => {
               });
             setcurrentLabel("");
           }}
+        />
+        <ImCancelCircle
+          onClick={() => setShowLabelContainer(!showLabelContainer)}
         />
       </div>
       <div className="labelList">
