@@ -8,15 +8,17 @@ import { Login } from "./pages/LoginPage/Login";
 import ProtectedRoute from "./Router/PrivateRoute";
 import { SignUp } from "./pages/SignUpPage/SignUp";
 import Mockman from "mockman-js";
+import { LandingPage } from "./pages/LandingPage/LandingPage";
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/" element={<LandingPage />} />
 
         <Route
-          path="/"
+          path="/home"
           element={<ProtectedRoute navigateTo={<HomePage />}></ProtectedRoute>}
         />
         <Route

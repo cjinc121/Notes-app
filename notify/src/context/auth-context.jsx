@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
         tokenVal: res.data.encodedToken,
         isUserLoggedIn: true,
       });
-      navigate("/");
+      navigate("/home");
     }
   };
 
@@ -39,13 +39,13 @@ const AuthProvider = ({ children }) => {
       tokenVal: data.encodedToken,
       isUserLoggedIn: true,
     });
-    navigate("/");
+    navigate("/home");
   };
 
   const signOutHandler = async () => {
     signOutHandlerService();
     setUser({ isUserLoggedIn: false });
-    navigate("/login");
+    navigate("/");
   };
 
   return (

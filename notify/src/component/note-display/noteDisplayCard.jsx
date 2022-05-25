@@ -50,6 +50,7 @@ const NoteDisplayCard = () => {
           .map((item) => {
             return (
               <div className={`note-display-card ${item.note.color}`}>
+                <div>{item.note.date}</div>
                 <div className="note-display-title">
                   <p>{item.note.title}</p>
                   <BsFillPinFill
@@ -105,6 +106,7 @@ const NoteDisplayCard = () => {
           return (
             <>
               <div className={`note-display-card ${item.note.color}`}>
+                <div>{item.note.date}</div>
                 <div className="note-display-title">
                   <p>{item.note.title}</p>
                   <BsPin
@@ -115,7 +117,6 @@ const NoteDisplayCard = () => {
                 </div>
                 <div className="note-display-body">
                   <p>
-                    {" "}
                     {item.note.body.length > 0 || item.note.title.length > 0
                       ? parse(item.note.body)
                       : "EMPTY NOTE"}

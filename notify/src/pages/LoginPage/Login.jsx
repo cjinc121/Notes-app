@@ -14,7 +14,7 @@ const Login = () => {
     password: "adarshBalika123",
   };
   return (
-    <div>
+    <div className="auth-page">
       <Header />
       <div className="authentication-card-container">
         <h3>Log In</h3>
@@ -32,24 +32,16 @@ const Login = () => {
           placeholder="ENTER PASSWORD"
           onChange={(e) => setLogUser({ ...logUser, password: e.target.value })}
         />
-        <div className="input-row-3">
-          <label>
-            <input id="checkbox-2" name="checkbox" type="checkbox" />
-            Remember Me
-          </label>
-          <Link to="">
-            <u>Forgot Your Password</u>
-          </Link>
-        </div>
+
         <div className="button-row-4">
           <button
-            className="button contained-button primary-button"
+            className="button contained-button "
             onClick={() => logInHandler(logUser)}
           >
             Log In
           </button>
           <button
-            className="button contained-button primary-button"
+            className="button contained-button"
             onClick={() => logInHandler(guestUser)}
           >
             Guest Login
