@@ -22,7 +22,7 @@ const ArchiveDisplayCard = () => {
             (item) => item.isArchive === true && item.isTrash === false
           ).length > 0
             ? "ARCHIVED NOTES"
-            : "EMPTY"}
+            : "No Notes In Archive"}
         </h3>
         {notesState.notes
           .filter((item) => item.isArchive === true && item.isTrash === false)

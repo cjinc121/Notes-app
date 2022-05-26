@@ -13,7 +13,7 @@ const TrashDisplayCard = () => {
         <h3>
           {notesState.notes.filter((item) => item.isTrash === true).length > 0
             ? "TRASH NOTES"
-            : "EMPTY"}
+            : "No Notes In Trash"}
         </h3>
         {notesState.notes
           .filter((item) => item.isTrash === true)
